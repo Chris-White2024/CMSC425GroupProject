@@ -17,6 +17,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public float jumpHeight = 5.0f;
     public GameObject playerBody;
     public GameObject playerHead;
+    public float blinkDistance = 5.0f;
 
     bool isGrounded;
 
@@ -44,13 +45,26 @@ public class ThirdPersonMovement : MonoBehaviour
             velocity.y = -2f;
         }
         if(Input.GetButtonDown("Jump") && isGrounded){
+            if (playerBody.GetComponent<Renderer>().material.color == Color.green){
+                jumpHeight = 10f;
+            }
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
-            if (jumpHeight == 10f){
+            if (playerBody.GetComponent<Renderer>().material.color == Color.green){
                 jumpHeight = 2f;
                 playerBody.GetComponent<Renderer>().material.color = Color.red;
                 playerHead.GetComponent<Renderer>().material.color = Color.red;
             }
         }
+        if(Input.GetKeyDown(KeyCode.B) && playerBody.GetComponent<Renderer>().material.color == Color.blue){
+            //blink in direction of player head rotation
+            Vector3 moveDir = playerHead.transform.forward;
+
+            controller.Move(moveDir * blinkDistance);
+            playerBody.GetComponent<Renderer>().material.color = Color.red;
+            playerHead.GetComponent<Renderer>().material.color = Color.red;
+        }
+        //Checks if k key is pressed using unity library code for key presses
+
 
     }
 }
