@@ -15,6 +15,8 @@ public class ThirdPersonMovement : MonoBehaviour
     public float groundDistance;
     public LayerMask groundMask;
     public float jumpHeight = 5.0f;
+    public GameObject playerBody;
+    public GameObject playerHead;
 
     bool isGrounded;
 
@@ -43,6 +45,12 @@ public class ThirdPersonMovement : MonoBehaviour
         }
         if(Input.GetButtonDown("Jump") && isGrounded){
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+            if (jumpHeight == 10f){
+                jumpHeight = 2f;
+                playerBody.GetComponent<Renderer>().material.color = Color.red;
+                playerHead.GetComponent<Renderer>().material.color = Color.red;
+            }
         }
+
     }
 }
