@@ -14,7 +14,7 @@ public class endGoal : MonoBehaviour
     // Start is called before the first frame update
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !win)
         {
             text.text = "You Win!" + "\n" + "Time taken: " + Time.timeSinceLevelLoad.ToString() + " seconds";
             win = true;
