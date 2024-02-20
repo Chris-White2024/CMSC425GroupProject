@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PowerUp-[0039_DarkOrange] Variant 2
+  m_Name: Untitled (1)-[0039_DarkOrange] Variant Variant Variant 1
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_Parent: {fileID: 2100000, guid: 2c0f7c49df8ae5d439da4596990c75fe, type: 2}
+  m_Parent: {fileID: 2100000, guid: f60ab8f6f53552944929ec606a893c62, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fc06ab6bb018b58489dc101843275f5b
+guid: 8844733db76315047a7897242dd1ad36
 SketchUpImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -43,7 +43,7 @@ SketchUpImporter:
     importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
+    importCameras: 1
     importLights: 1
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
@@ -112,5 +112,5 @@ SketchUpImporter:
   selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000
   assetHash:
     serializedVersion: 2
-    Hash: 660498e069b1ef87b6932249f31b6b23
+    Hash: 00866fe84c3be736188f0daa2c85cb32
   fileUnit: 0
