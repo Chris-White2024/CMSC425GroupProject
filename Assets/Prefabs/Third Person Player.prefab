@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 769004640312576768}
   serializedVersion: 2
   m_LocalRotation: {x: -0.27193865, y: -0.65272456, z: 0.27193865, w: -0.65272456}
-  m_LocalPosition: {x: -0.00003318787, y: 0, z: 0}
+  m_LocalPosition: {x: -0.000011444092, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -189,8 +189,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3060044866383599152}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.29546934, y: -0.64241564, z: 0.29546934, w: -0.64241564}
-  m_LocalPosition: {x: -0.000008010865, y: 0, z: 0}
+  m_LocalRotation: {x: -0.2954694, y: -0.64241564, z: 0.2954694, w: -0.64241564}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -270,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 3543216097474000672}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.000001, y: 7.777778, z: 0.0000015894572}
+  m_LocalPosition: {x: -15.000002, y: 17.5, z: 0.0000023841858}
   m_LocalScale: {x: 0.8333333, y: 0.5555556, z: 0.8333333}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -934,8 +934,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7656295935595875103}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.28373528, y: -0.6476838, z: 0.28373528, w: -0.6476838}
-  m_LocalPosition: {x: -0.000008010865, y: 0, z: 0}
+  m_LocalRotation: {x: -0.28373533, y: -0.6476838, z: 0.28373533, w: -0.6476838}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1016,7 +1016,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0.1370915, y: 6.49, z: -18.97}
-  m_LocalScale: {x: 1.2, y: 1.8, z: 1.2}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 843857005510467331}
@@ -1063,11 +1063,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 9057895037238251897}
   cam: {fileID: 0}
-  speed: 6
+  speed: 8
   turnSmoothTime: 0.1
   groundCheck: {fileID: 7873022473174753248}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  jumpHeight: 5
+  jumpHeight: 1222
