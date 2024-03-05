@@ -1,6 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+
 
 public class ThirdPersonMovement : MonoBehaviour
 {
@@ -19,11 +20,22 @@ public class ThirdPersonMovement : MonoBehaviour
     public GameObject playerHead;
     public float blinkDistance = 5.0f;
 
+    //Make a queue to store the colors so its first in first out
+    List<string> colorStack = new List<string>();    
+
+
     bool isGrounded;
 
     // Update is called once per frame
     void Update()
     {
+        //When player presses e, pop the color from the stack and change the color of the player
+        if (Input.GetKeyDown(KeyCode.E)){
+            popColor();
+        }
+        if(Input.GetKeyDown(KeyCode.Q)){
+            popFromEnd();
+        }
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
@@ -37,7 +49,6 @@ public class ThirdPersonMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
             controller.Move(moveDir * speed * Time.deltaTime);
         }
-
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
@@ -45,26 +56,77 @@ public class ThirdPersonMovement : MonoBehaviour
             velocity.y = -2f;
         }
         if(Input.GetButtonDown("Jump") && isGrounded){
-            if (playerBody.GetComponent<Renderer>().material.color == Color.green){
-                jumpHeight = 10f;
-            }
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
-            if (playerBody.GetComponent<Renderer>().material.color == Color.green){
-                jumpHeight = 2f;
-                playerBody.GetComponent<Renderer>().material.color = Color.red;
-                playerHead.GetComponent<Renderer>().material.color = Color.red;
-            }
         }
+        
+
         if(Input.GetKeyDown(KeyCode.B) && playerBody.GetComponent<Renderer>().material.color == Color.blue){
             //blink in direction of player head rotation
             Vector3 moveDir = playerHead.transform.forward;
 
             controller.Move(moveDir * blinkDistance);
-            playerBody.GetComponent<Renderer>().material.color = Color.red;
-            playerHead.GetComponent<Renderer>().material.color = Color.red;
         }
         //Checks if k key is pressed using unity library code for key presses
 
 
+    }
+    public void pushColor(string color){
+        //Push color to the front of the stack
+        colorStack.Add(color);
+    }
+    public void popColor(){
+        //Pop color from the end of the stack
+        resetAbilities();
+
+        if (colorStack.Count == 0){
+            playerBody.GetComponent<Renderer>().material.color = Color.white;
+            playerHead.GetComponent<Renderer>().material.color = Color.white;
+            return;
+        }
+        //Using proper syntax with list types get the first element of the list
+        string color = colorStack[0]; // Accessing first element using index notation
+        colorStack.RemoveAt(0);
+        if (color == "blue"){
+            playerBody.GetComponent<Renderer>().material.color = Color.blue;
+            playerHead.GetComponent<Renderer>().material.color = Color.blue;
+        }
+        else if (color == "green"){
+            playerBody.GetComponent<Renderer>().material.color = Color.green;
+            playerHead.GetComponent<Renderer>().material.color = Color.green;
+            jumpHeight = 10.0f;
+        }
+        else if (color == "red"){
+            playerBody.GetComponent<Renderer>().material.color = Color.red;
+            playerHead.GetComponent<Renderer>().material.color = Color.red;
+            speed = 20f;
+        }
+    }
+    void resetAbilities(){
+        speed = 6f;
+        jumpHeight = 5.0f;
+    }
+    void popFromEnd(){
+        resetAbilities();
+        if (colorStack.Count == 0){
+            playerBody.GetComponent<Renderer>().material.color = Color.white;
+            playerHead.GetComponent<Renderer>().material.color = Color.white;
+            return;
+        }
+        string color = colorStack[colorStack.Count - 1]; // Accessing last element using index notation
+        colorStack.RemoveAt(colorStack.Count - 1);
+        if (color == "blue"){
+            playerBody.GetComponent<Renderer>().material.color = Color.blue;
+            playerHead.GetComponent<Renderer>().material.color = Color.blue;
+        }
+        else if (color == "green"){
+            playerBody.GetComponent<Renderer>().material.color = Color.green;
+            playerHead.GetComponent<Renderer>().material.color = Color.green;
+            jumpHeight = 10.0f;
+        }
+        else if (color == "red"){
+            playerBody.GetComponent<Renderer>().material.color = Color.red;
+            playerHead.GetComponent<Renderer>().material.color = Color.red;
+            speed = 20f;
+        }
     }
 }

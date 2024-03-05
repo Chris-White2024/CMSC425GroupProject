@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class jumpPowerUp : MonoBehaviour
+public class speedPowerUp : MonoBehaviour
 {
     public GameObject pickupEffect;
 
@@ -17,7 +17,7 @@ public class jumpPowerUp : MonoBehaviour
         //Grab instance of the color stack defined in ThirdPersonMovement.cs
         ThirdPersonMovement playerMaterials = player.GetComponent<ThirdPersonMovement>();
         //Push the color onto the stack
-        playerMaterials.pushColor("green");
+        playerMaterials.pushColor("red");
         //Spawn a cool effect
         Instantiate(pickupEffect, transform.position, transform.rotation);
         //Remove Object
