@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class jumpPowerUp : MonoBehaviour
+public class powerUp : MonoBehaviour
 {
     public GameObject pickupEffect;
 
@@ -14,12 +14,24 @@ public class jumpPowerUp : MonoBehaviour
     }
 
     void pickup(Collider player){
+        string color = "";
         //Grab instance of the color stack defined in ThirdPersonMovement.cs
         ThirdPersonMovement playerMaterials = player.GetComponent<ThirdPersonMovement>();
         //Push the color onto the stack
-        playerMaterials.pushColor("green");
+        
+        if (this.name == "Blink"){
+            color = "blue";
+        }
+        else if (this.name == "Speed"){
+            color = "red";
+        }
+        else if (this.name == "Jump"){
+            color = "green";
+        }
         //Spawn a cool effect
-        Instantiate(pickupEffect, transform.position, transform.rotation);
+        playerMaterials.pushColor(color);
+        GameObject tmp2 = Instantiate(pickupEffect, transform.position, transform.rotation);
+        
         //Remove Object
         GameObject tmp = gameObject;
         //Store transform of object
@@ -27,12 +39,13 @@ public class jumpPowerUp : MonoBehaviour
         //Move object far away
         tmp.transform.position = new Vector3(0, -100, 0);
         //Wait 5 seconds
-        StartCoroutine(Respawn(tmp, pos));
+        StartCoroutine(Respawn(tmp, pos, tmp2));
         return;
     }
-    IEnumerator Respawn(GameObject obj, Vector3 pos){
+    IEnumerator Respawn(GameObject obj, Vector3 pos, GameObject particles){
         yield return new WaitForSeconds(5);
         //Move object back to original position
+        Destroy(particles);
         obj.transform.position = pos;     
     }
 
