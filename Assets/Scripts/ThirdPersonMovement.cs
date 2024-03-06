@@ -25,6 +25,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
 
     bool isGrounded;
+    bool hasUmbrella = false;
 
     // Update is called once per frame
     void Update()
@@ -35,6 +36,12 @@ public class ThirdPersonMovement : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Q)){
             popFromEnd();
+        }
+        if(velocity.y != -2 && velocity.y < 0 && hasUmbrella){
+            gravity = -2.5f;
+        }
+        else{
+            gravity = -9.81f;
         }
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -58,17 +65,6 @@ public class ThirdPersonMovement : MonoBehaviour
         if(Input.GetButtonDown("Jump") && isGrounded){
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
-        
-
-        if(Input.GetKeyDown(KeyCode.B) && playerBody.GetComponent<Renderer>().material.color == Color.blue){
-            //blink in direction of player head rotation
-            Vector3 moveDir = playerHead.transform.forward;
-
-            controller.Move(moveDir * blinkDistance);
-        }
-        //Checks if k key is pressed using unity library code for key presses
-
-
     }
     public void pushColor(string color){
         //Push color to the front of the stack
@@ -128,5 +124,8 @@ public class ThirdPersonMovement : MonoBehaviour
             playerHead.GetComponent<Renderer>().material.color = Color.red;
             speed = 20f;
         }
+    }
+    public void pickUpUmbrella(){
+        hasUmbrella = true;
     }
 }
