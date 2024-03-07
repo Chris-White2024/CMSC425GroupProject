@@ -20,6 +20,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public GameObject playerBody;
     public GameObject playerHead;
     public float blinkDistance = 5.0f;
+    ColorIndicator colorOnScreen;
 
     //Make a queue to store the colors so its first in first out
     List<string> colorStack = new List<string>();    
@@ -27,6 +28,10 @@ public class ThirdPersonMovement : MonoBehaviour
 
     bool isGrounded;
     bool hasUmbrella = false;
+
+    void Start(){
+        colorOnScreen = GameObject.Find("Canvas").GetComponent<ColorIndicator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -69,11 +74,14 @@ public class ThirdPersonMovement : MonoBehaviour
         }
     }
     public void pushColor(string color){
+
         //Push color to the front of the stack
         colorStack.Add(color);
+        colorOnScreen.UpdateColorBlocks(colorStack);
     }
     public void popColor(){
         //Pop color from the end of the stack
+
         resetAbilities();
 
         if (colorStack.Count == 0){
@@ -98,6 +106,7 @@ public class ThirdPersonMovement : MonoBehaviour
             playerHead.GetComponent<Renderer>().material.color = Color.red;
             speed = 20f;
         }
+        colorOnScreen.UpdateColorBlocks(colorStack);
     }
     void resetAbilities(){
         speed = 6f;
@@ -126,9 +135,13 @@ public class ThirdPersonMovement : MonoBehaviour
             playerHead.GetComponent<Renderer>().material.color = Color.red;
             speed = 20f;
         }
+        colorOnScreen.UpdateColorBlocks(colorStack);
     }
     public void pickUpGlider(){
         hasUmbrella = true;
+    }
+    public List<string> getColors(){
+        return colorStack;
     }
 
     public float getMagnitude(){
