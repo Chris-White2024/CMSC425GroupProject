@@ -39,6 +39,7 @@ public class ThirdPersonMovement : MonoBehaviour
         }
         if(velocity.y != -2 && velocity.y < 0 && hasUmbrella){
             gravity = -2.5f;
+
         }
         else{
             gravity = -9.81f;
@@ -125,7 +126,7 @@ public class ThirdPersonMovement : MonoBehaviour
             speed = 20f;
         }
     }
-    public void pickUpUmbrella(){
+    public void pickUpGlider(){
         hasUmbrella = true;
     }
 }

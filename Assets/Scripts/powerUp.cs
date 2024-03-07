@@ -19,13 +19,13 @@ public class powerUp : MonoBehaviour
         ThirdPersonMovement playerMaterials = player.GetComponent<ThirdPersonMovement>();
         //Push the color onto the stack
         
-        if (this.name == "Blink"){
+        if (this.name.Contains("Blink")){
             color = "blue";
         }
-        else if (this.name == "Speed"){
+        else if (this.name.Contains("Speed")){
             color = "red";
         }
-        else if (this.name == "Jump"){
+        else if (this.name.Contains("Jump")){
             color = "green";
         }
         //Spawn a cool effect
