@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 
 public class ThirdPersonMovement : MonoBehaviour
@@ -128,5 +129,9 @@ public class ThirdPersonMovement : MonoBehaviour
     }
     public void pickUpGlider(){
         hasUmbrella = true;
+    }
+
+    public float getMagnitude(){
+        return Math.Abs(velocity.x + velocity.z);
     }
 }

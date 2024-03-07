@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class endGoal : MonoBehaviour
@@ -16,9 +17,9 @@ public class endGoal : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && !win)
         {
-            text.text = "You Win!" + "\n" + "Time taken: " + Time.timeSinceLevelLoad.ToString() + " seconds";
+            text.text = "You Win!" + "\n" + "Time taken: " + Time.timeSinceLevelLoad.ToString("F2") + " seconds";
             win = true;
-
+            StartCoroutine(endScreen());
         }
     }
 
@@ -30,8 +31,12 @@ public class endGoal : MonoBehaviour
         
         }
         else{
-        text.text = "Reach the top of the Castle to win!" + "\n" + "Time taken so far" + Time.timeSinceLevelLoad.ToString() + " seconds";
+        text.text = "Reach the top of the Castle to win!" + "\n" + "Time taken so far " + Time.timeSinceLevelLoad.ToString("F2") + " seconds";
         }    
     }
 
+    IEnumerator endScreen(){
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("Level-1");        
+    }
 }

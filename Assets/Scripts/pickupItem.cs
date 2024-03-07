@@ -18,7 +18,7 @@ public class pickupItem : MonoBehaviour
         this.transform.parent = ompo.transform;
         // Match position and rotation with the collided object
         transform.localPosition = Vector3.zero;
-        transform.localPosition += new Vector3 (-1.25f,.2f,-.5f);
+        transform.localPosition += new Vector3 (0f,.35f,0f);
         transform.localRotation = Quaternion.identity;
         ThirdPersonMovement moveScript = ompo.GetComponent<ThirdPersonMovement>();
         moveScript.pickUpGlider();
