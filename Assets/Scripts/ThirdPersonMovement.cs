@@ -1,116 +1,154 @@
-using System.Collections;
-using UnityEngine;
-using System.Collections.Generic;
 using System;
-
+using System.Collections.Generic;
+using UnityEngine;
 
 public class ThirdPersonMovement : MonoBehaviour
 {
     public CharacterController controller;
     public Vector3 velocity;
     public Transform cam;
+    public Transform groundCheck;
+    public LayerMask groundMask;
+    public GameObject playerBody;
+    public GameObject playerHead;
+
     public float speed = 6f;
     public float turnSmoothTime = .1f;
     float turnSmoothVelocity;
     public float gravity = -9.81f;
-    public Transform groundCheck;
     public float groundDistance;
-    public LayerMask groundMask;
     public float jumpHeight = 5.0f;
-    public GameObject playerBody;
-    public GameObject playerHead;
     public float blinkDistance = 5.0f;
-    ColorIndicator colorOnScreen;
+
     public bool hasDoubleJump;
-
-    //Make a queue to store the colors so its first in first out
-    List<string> colorStack = new List<string>();    
-
-
     public bool isGrounded;
+    public bool isWallRunning;
+    public bool canWallRun = false;
 
+    ColorIndicator colorOnScreen;
+    List<string> colorStack = new List<string>();
 
-    void Start(){
+    void Start()
+    {
         colorOnScreen = GameObject.Find("Canvas").GetComponent<ColorIndicator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //When player presses e, pop the color from the stack and change the color of the player
-        if (Input.GetKeyDown(KeyCode.E)){
-            popColor();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PopColor();
         }
-        movementFromInput();
+        MovementFromInput();
     }
-    public void pushColor(string color){
 
-        //Push color to the front of the stack
+    public void PushColor(string color)
+    {
         colorStack.Add(color);
         colorOnScreen.UpdateColorBlocks(colorStack);
     }
-    public void popColor(){
-        //Pop color from the end of the stack
 
-        resetAbilities();
+    public void PopColor()
+    {
+        ResetAbilities();
 
-        if (colorStack.Count == 0){
-            playerBody.GetComponent<Renderer>().material.color = Color.white;
-            playerHead.GetComponent<Renderer>().material.color = Color.white;
+        if (colorStack.Count == 0)
+        {
+            SetPlayerColor(Color.white);
             return;
         }
-        //Using proper syntax with list types get the first element of the list
-        string color = colorStack[0]; // Accessing first element using index notation
+
+        string color = colorStack[0];
         colorStack.RemoveAt(0);
-        if (color == "blue"){
-            playerBody.GetComponent<Renderer>().material.color = Color.blue;
-            playerHead.GetComponent<Renderer>().material.color = Color.blue;
+
+        switch (color)
+        {
+            case "blue":
+                SetPlayerColor(Color.blue);
+                break;
+            case "green":
+                SetPlayerColor(Color.green);
+                jumpHeight = 10.0f;
+                break;
+            case "red":
+                SetPlayerColor(Color.red);
+                speed = 20f;
+                break;
+            case "yellow":
+                SetPlayerColor(Color.yellow);
+                canWallRun = true;
+                break;
         }
-        else if (color == "green"){
-            playerBody.GetComponent<Renderer>().material.color = Color.green;
-            playerHead.GetComponent<Renderer>().material.color = Color.green;
-            jumpHeight = 10.0f;
-        }
-        else if (color == "red"){
-            playerBody.GetComponent<Renderer>().material.color = Color.red;
-            playerHead.GetComponent<Renderer>().material.color = Color.red;
-            speed = 20f;
-        }
+
         colorOnScreen.UpdateColorBlocks(colorStack);
     }
-    void resetAbilities(){
+
+    void ResetAbilities()
+    {
         speed = 6f;
         jumpHeight = 5.0f;
-    }
-    public List<string> getColors(){
-        return colorStack;
+        canWallRun = false;
+        isWallRunning = false;
     }
 
-    public float getMagnitude(){
-        return Math.Abs(velocity.x + velocity.z);
+    void SetPlayerColor(Color color)
+    {
+        playerBody.GetComponent<Renderer>().material.color = color;
+        playerHead.GetComponent<Renderer>().material.color = color;
     }
-    void movementFromInput(){
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if(direction.magnitude >= .1f)
-        {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            controller.Move(moveDir * speed * Time.deltaTime);
-        }
+void MovementFromInput()
+{
+    isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+    isWallRunning = false;
+
+    // Check if the player is touching a wall tagged with "WallRun"
+    if (canWallRun && (Physics.Raycast(transform.position, transform.right, out RaycastHit hitRight, 1.5f) && hitRight.collider.CompareTag("WallRun")) ||
+        (Physics.Raycast(transform.position, -transform.right, out RaycastHit hitLeft, 1.5f) && hitLeft.collider.CompareTag("WallRun")))
+    {
+        // Change the gravity direction to simulate walking on the wall
+        isWallRunning = true;
+    }
+
+    float horizontal = Input.GetAxisRaw("Horizontal");
+    float vertical = Input.GetAxisRaw("Vertical");
+    Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+    if (direction.magnitude >= .1f)
+    {
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+        // Apply wall running gravity if the player is wall running
+        float verticalVelocity = isWallRunning ? 0 : velocity.y;
+        controller.Move((moveDir * speed + Vector3.up * verticalVelocity) * Time.deltaTime);
+    }
+
+    // Apply regular gravity if not wall running
+    if (isWallRunning && velocity.y < 0 && !isGrounded){
+        velocity.y += (1/4) * gravity * Time.deltaTime;
+    }
+    else
+    {
         velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+    }
 
-        if(isGrounded && velocity.y < 0){
-            velocity.y = -2f;
-        }
-        if(Input.GetButtonDown("Jump") && (isGrounded || hasDoubleJump)){
+    controller.Move(velocity * Time.deltaTime);
+
+    if (isGrounded && velocity.y < 0)
+    {
+        velocity.y = -2f;
+    }
+
+    if (Input.GetButtonDown("Jump"))
+    {
+        if (isGrounded || hasDoubleJump || isWallRunning)
+        {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
     }
+}
+
 }

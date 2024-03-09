@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pickupItem : MonoBehaviour
+public class PickupItem : MonoBehaviour
 {
     GameObject ompo;
     ThirdPersonMovement ompoMovement;
@@ -12,89 +12,88 @@ public class pickupItem : MonoBehaviour
     Vector3 originalPosition;
     Quaternion originalRotation;
 
-    // Start is called before the first frame update
     void Start()
     {
         ompo = GameObject.Find("Third Person Player 1");
         ompoMovement = ompo.GetComponent<ThirdPersonMovement>();
         originalPosition = transform.position;
         originalRotation = transform.rotation;
-        
     }
 
-    void OnTriggerEnter(Collider other){
+    void OnTriggerEnter(Collider other)
+    {
         this.transform.parent = ompo.transform;
-        if (this.name.Contains("Glider")){
+        if (this.name.Contains("Glider"))
+        {
             hasGlider = true;
-            offSet = new Vector3 (0f,.35f,0f);
+            offSet = new Vector3(0f, .35f, 0f);
             transform.localRotation = Quaternion.identity;
         }
-        if (this.name.Contains("Boots")){
+        if (this.name.Contains("Boots"))
+        {
             hasBoots = true;
             ompoMovement.hasDoubleJump = true;
-            offSet = new Vector3 (.5f,-1f,.5f);
+            offSet = new Vector3(.4f, -1f, .5f);
             transform.localRotation = Quaternion.Euler(0f, 180.0f, 0.0f);
         }
-        // Match position and rotation with the collided object
-        transform.localPosition = Vector3.zero;
-        transform.localPosition += offSet;
+        transform.localPosition = Vector3.zero + offSet;
     }
-    void Update(){
-        if (hasBoots && !(ompoMovement.hasDoubleJump)){
-            if(ompoMovement.isGrounded){
-                ompoMovement.hasDoubleJump = true;
-            }
+
+    void Update()
+    {
+        if (hasBoots && !(ompoMovement.hasDoubleJump) && ompoMovement.isGrounded)
+        {
+            ompoMovement.hasDoubleJump = true;
         }
-        if (Input.GetKeyDown(KeyCode.Q)){
-            dropItem();
-            foreach (GameObject obj in getItemsToRemove()){
-                if (obj.transform.parent == ompo.transform){
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            DropItem();
+            foreach (GameObject obj in GetItemsToRemove())
+            {
+                if (obj.transform.parent == ompo.transform)
+                {
                     transform.parent = null;
                     transform.position = originalPosition;
                     transform.rotation = originalRotation;
                 }
             }
-
         }
-        if (Input.GetButtonDown("Jump")){
-            StartCoroutine(doubleJump());
+        if (Input.GetButtonDown("Jump"))
+        {
+            StartCoroutine(DoubleJump());
         }
-        gliderGravity();
-    }
-    void gliderGravity(){
-        if(ompoMovement.velocity.y != -2 && ompoMovement.velocity.y < 0 && hasGlider){
-            ompoMovement.gravity = -2.5f;
-        }
-        else{
-            ompoMovement.gravity = -9.81f;
-        }
+        GliderGravity();
     }
 
-    IEnumerator doubleJump(){
+    void GliderGravity()
+    {
+        ompoMovement.gravity = (ompoMovement.velocity.y != -2 && ompoMovement.velocity.y < 0 && hasGlider) ? -2.5f : -9.81f;
+    }
+
+    IEnumerator DoubleJump()
+    {
         yield return new WaitForSeconds(1);
-        ompoMovement.hasDoubleJump = false;    
+        ompoMovement.hasDoubleJump = false;
     }
-    void dropItem(){
+
+    void DropItem()
+    {
         hasGlider = false;
         hasBoots = false;
     }
-    List<GameObject> getItemsToRemove(){
-        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
 
-        // List to store GameObjects with the script
+    List<GameObject> GetItemsToRemove()
+    {
+        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
         List<GameObject> gameObjectsWithScript = new List<GameObject>();
 
-        // Loop through each GameObject
         foreach (GameObject obj in allObjects)
         {
-            // Check if the GameObject has the script attached
-            if (obj.GetComponent<pickupItem>() != null)
+            if (obj.GetComponent<PickupItem>() != null)
             {
-                // Add the GameObject to the list
                 gameObjectsWithScript.Add(obj);
             }
         }
         return gameObjectsWithScript;
     }
-
 }

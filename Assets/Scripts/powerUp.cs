@@ -28,8 +28,11 @@ public class powerUp : MonoBehaviour
         else if (this.name.Contains("Jump")){
             color = "green";
         }
+        else if (this.name.Contains("WallRunning")){
+            color = "yellow";
+        }
         //Spawn a cool effect
-        playerMaterials.pushColor(color);
+        playerMaterials.PushColor(color);
         GameObject tmp2 = Instantiate(pickupEffect, transform.position, transform.rotation);
         
         //Remove Object

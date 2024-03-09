@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 852666592}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: WallRun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -713,7 +713,7 @@ GameObject:
   - component: {fileID: 962805325}
   m_Layer: 3
   m_Name: platform (2)
-  m_TagString: Untagged
+  m_TagString: WallRun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1049,11 +1049,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5776315247245548915, guid: 70bbcd8b709b974448b232663863b4ac, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000001463662
+      value: 0.000000014636623
       objectReference: {fileID: 0}
     - target: {fileID: 5776315247245548915, guid: 70bbcd8b709b974448b232663863b4ac, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000090459285
+      value: -0.000000009045929
       objectReference: {fileID: 0}
     - target: {fileID: 6526927163284087099, guid: 70bbcd8b709b974448b232663863b4ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1069,11 +1069,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6526927163284087099, guid: 70bbcd8b709b974448b232663863b4ac, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000019362428
+      value: 0.000000019362433
       objectReference: {fileID: 0}
     - target: {fileID: 6526927163284087099, guid: 70bbcd8b709b974448b232663863b4ac, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000011966639
+      value: -0.000000011966642
       objectReference: {fileID: 0}
     - target: {fileID: 7318284505549330595, guid: 70bbcd8b709b974448b232663863b4ac, type: 3}
       propertyPath: m_LocalPosition.x
