@@ -12,7 +12,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public GameObject playerBody;
     public GameObject playerHead;
 
-    public float speed = 6f;
+    public float speed = 10f;
     public float turnSmoothTime = .1f;
     float turnSmoothVelocity;
     public float gravity = -9.81f;
@@ -72,7 +72,7 @@ public class ThirdPersonMovement : MonoBehaviour
                 break;
             case "red":
                 SetPlayerColor(Color.red);
-                speed = 20f;
+                speed = 15f;
                 break;
             case "yellow":
                 SetPlayerColor(Color.yellow);
@@ -103,8 +103,8 @@ void MovementFromInput()
     isWallRunning = false;
 
     // Check if the player is touching a wall tagged with "WallRun"
-    if (canWallRun && (Physics.Raycast(transform.position, transform.right, out RaycastHit hitRight, 1.5f) && hitRight.collider.CompareTag("WallRun")) ||
-        (Physics.Raycast(transform.position, -transform.right, out RaycastHit hitLeft, 1.5f) && hitLeft.collider.CompareTag("WallRun")))
+    if (canWallRun && ((Physics.Raycast(transform.position, transform.right, out RaycastHit hitRight, 1.5f) && hitRight.collider.CompareTag("WallRun")) ||
+        (Physics.Raycast(transform.position, -transform.right, out RaycastHit hitLeft, 1.5f) && hitLeft.collider.CompareTag("WallRun"))))
     {
         // Change the gravity direction to simulate walking on the wall
         isWallRunning = true;
@@ -147,6 +147,9 @@ void MovementFromInput()
         if (isGrounded || hasDoubleJump || isWallRunning)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+            if (hasDoubleJump){
+                hasDoubleJump = false;
+            }
         }
     }
 }

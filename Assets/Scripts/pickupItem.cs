@@ -58,26 +58,19 @@ public class PickupItem : MonoBehaviour
                 }
             }
         }
-        if (Input.GetButtonDown("Jump"))
-        {
-            StartCoroutine(DoubleJump());
-        }
         GliderGravity();
     }
 
     void GliderGravity()
     {
-        ompoMovement.gravity = (ompoMovement.velocity.y != -2 && ompoMovement.velocity.y < 0 && hasGlider) ? -2.5f : -9.81f;
-    }
-
-    IEnumerator DoubleJump()
-    {
-        yield return new WaitForSeconds(1);
-        ompoMovement.hasDoubleJump = false;
+        if (ompoMovement.velocity.y != -2 && ompoMovement.velocity.y < -1 && hasGlider){
+            ompoMovement.velocity.y *= .95f;
+        }
     }
 
     void DropItem()
     {
+        ompoMovement.gravity = -9.81f;
         hasGlider = false;
         hasBoots = false;
     }
