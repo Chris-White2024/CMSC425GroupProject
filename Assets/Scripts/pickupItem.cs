@@ -14,7 +14,7 @@ public class PickupItem : MonoBehaviour
 
     void Start()
     {
-        ompo = GameObject.Find("Third Person Player 1");
+        ompo = GameObject.FindWithTag("Player");
         ompoMovement = ompo.GetComponent<ThirdPersonMovement>();
         originalPosition = transform.position;
         originalRotation = transform.rotation;
