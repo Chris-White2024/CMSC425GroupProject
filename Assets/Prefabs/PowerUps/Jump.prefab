@@ -376,6 +376,7 @@ MonoBehaviour:
   hoverHeight: 0.5
   spinSpeed: 50
   spinSpeed2: 50
+  dim: 121
 --- !u!135 &8678301082064851977
 SphereCollider:
   m_ObjectHideFlags: 0
