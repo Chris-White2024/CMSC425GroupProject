@@ -9,7 +9,7 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private float pathWidth;
+    [SerializeField] private Vector3 endPosition;
     [SerializeField] private float speed;
     [SerializeField] private float rotateTime = 3f;
     [SerializeField] private float fovAngle = 60;
@@ -18,7 +18,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float maxDistanceFromPlayer = 10;
 
     private Vector3 startPosition;
-    private Vector3 endPosition;
     private bool isFollowingPlayer = false;
     private bool isRotating = false;
     private NavMeshAgent agent;
@@ -40,7 +39,6 @@ public class EnemyController : MonoBehaviour
         InitializeAgent();
         InitializeSight();
         startPosition = transform.position;
-        endPosition = transform.position + transform.right * pathWidth;
         Debug.DrawRay(startPosition, Vector3.up, Color.red, 100);
         Debug.DrawRay(endPosition, Vector3.up, Color.blue, 100);
 
