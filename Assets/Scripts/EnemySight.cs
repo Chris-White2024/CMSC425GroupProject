@@ -42,14 +42,14 @@ public class EnemySight : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        //TODO: if is player...
+        if (!other.gameObject.tag.Equals("Player")) { return; }
         if (IsInSight(other)) {
             enemyController.FollowPlayer(other.gameObject);
         }
     }
 
     private void OnTriggerStay(Collider other) {
-        //TODO: if is player...
+        if (!other.gameObject.tag.Equals("Player")) { return; }
         if (IsInSight(other)) {
             enemyController.FollowPlayer(other.gameObject);
         }

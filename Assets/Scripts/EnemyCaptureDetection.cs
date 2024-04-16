@@ -20,7 +20,8 @@ public class EnemyCaptureDetection : MonoBehaviour
      * Called when inner collider catches a trigger
      */
     private void OnTriggerEnter(Collider other) {
-        //TODO: if is player...
-        Debug.Log("Game Over");
+        if (other.gameObject.tag.Equals("Player")) {
+            Debug.Log("Game Over");
+        }
     }
 }
