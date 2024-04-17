@@ -15,7 +15,7 @@ public class ColorIndicator : MonoBehaviour
         ClearColorBlocks();
 
         // Calculate initial position for the first color block
-        Vector2 position = new Vector2(-550, -250);
+        Vector2 position = new Vector2(-75, -30);
 
         // Iterate through the list of color names
         foreach (string colorName in colorNames)
@@ -37,7 +37,7 @@ public class ColorIndicator : MonoBehaviour
             rectTransform.anchoredPosition = position;
 
             // Move the position for the next color block
-            position.x += blockSize + 10;
+            position.x += 5;
 
             // Add a tag to the color block GameObject
             colorBlockGO.tag = "ColorBlock";

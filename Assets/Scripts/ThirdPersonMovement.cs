@@ -9,8 +9,6 @@ public class ThirdPersonMovement : MonoBehaviour
     public Transform cam;
     public Transform groundCheck;
     public LayerMask groundMask;
-    public GameObject playerBody;
-    public GameObject playerHead;
 
     public float speed = 10f;
     public float turnSmoothTime = .1f;
@@ -25,76 +23,11 @@ public class ThirdPersonMovement : MonoBehaviour
     public bool isWallRunning;
     public bool canWallRun = false;
 
-    ColorIndicator colorOnScreen;
-    List<string> colorStack = new List<string>();
 
-    void Start()
-    {
-        colorOnScreen = GameObject.Find("Canvas").GetComponent<ColorIndicator>();
-    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            PopColor();
-        }
         MovementFromInput();
-    }
-
-    public void PushColor(string color)
-    {
-        colorStack.Add(color);
-        colorOnScreen.UpdateColorBlocks(colorStack);
-    }
-
-    public void PopColor()
-    {
-        ResetAbilities();
-
-        if (colorStack.Count == 0)
-        {
-            SetPlayerColor(Color.white);
-            return;
-        }
-
-        string color = colorStack[0];
-        colorStack.RemoveAt(0);
-
-        switch (color)
-        {
-            case "blue":
-                SetPlayerColor(Color.blue);
-                break;
-            case "green":
-                SetPlayerColor(Color.green);
-                jumpHeight = 10.0f;
-                break;
-            case "red":
-                SetPlayerColor(Color.red);
-                speed = 15f;
-                break;
-            case "yellow":
-                SetPlayerColor(Color.yellow);
-                canWallRun = true;
-                break;
-        }
-
-        colorOnScreen.UpdateColorBlocks(colorStack);
-    }
-
-    void ResetAbilities()
-    {
-        speed = 6f;
-        jumpHeight = 5.0f;
-        canWallRun = false;
-        isWallRunning = false;
-    }
-
-    void SetPlayerColor(Color color)
-    {
-        playerBody.GetComponent<Renderer>().material.color = color;
-        playerHead.GetComponent<Renderer>().material.color = color;
     }
 
 void MovementFromInput()

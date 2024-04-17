@@ -16,7 +16,7 @@ public class powerUp : MonoBehaviour
     void pickup(Collider player){
         string color = "";
         //Grab instance of the color stack defined in ThirdPersonMovement.cs
-        ThirdPersonMovement playerMaterials = player.GetComponent<ThirdPersonMovement>();
+        ColorHandler playerMaterials = player.GetComponent<ColorHandler>();
         //Push the color onto the stack
         
         if (this.name.Contains("Blink")){
