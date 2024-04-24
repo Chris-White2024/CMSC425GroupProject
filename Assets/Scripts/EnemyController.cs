@@ -157,6 +157,7 @@ public class EnemyController : MonoBehaviour
     private IEnumerator TrackPlayer(GameObject player) {
         // Repeat while not captured and not too far
         agent.enabled = true;
+        isRotating = false;
         while (Vector3.Distance(player.transform.position, transform.position) <= maxDistanceFromPlayer) {
             agent.SetDestination(player.transform.position);
             yield return new WaitForSeconds(playerPositionUpdateDelay);
