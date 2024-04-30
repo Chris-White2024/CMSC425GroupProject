@@ -9,7 +9,6 @@ public class combat : MonoBehaviour
 {
     public int health = 5;
 
-
     public ThirdPersonMovement playerMovement;
     public float pushForce = 5f;
 
@@ -40,7 +39,7 @@ public class combat : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            pushBack();
+            pushBack(other);
             TakeDamage(1);
             StartCoroutine(flashMesh());
 
@@ -66,15 +65,13 @@ public class combat : MonoBehaviour
         other.GetComponent<ThirdPersonMovement>().velocity.y = 0f;
         other.GetComponent<ThirdPersonMovement>().controller.Move(upWards * pushForce);
     }
-    public void pushBack()
+    public void pushBack(Collider other)
     {
-        Vector3 pushDirection = this.transform.forward.normalized;
-        //Find opposite direction of player facing
-        Vector3 oppositeDirection = -pushDirection;
+        Vector3 pushDirection = other.transform.forward.normalized;
         //Angle Slightly up to avoid pushing player into the ground
-        oppositeDirection.y = 0.5f;
+        pushDirection.y = 0.5f;
         //Apply force in opposite direction for a short time
-        playerMovement.controller.Move(oppositeDirection * pushForce); 
+        playerMovement.controller.Move(pushDirection * pushForce); 
     }
     public void pushUp()
     {
@@ -99,6 +96,7 @@ public class combat : MonoBehaviour
     }
 
     IEnumerator flashMesh(){
+
         MeshRenderer mesh = ompoMesh.GetComponent<MeshRenderer>();
         for (int i = 0; i < 5; i++)
         {
