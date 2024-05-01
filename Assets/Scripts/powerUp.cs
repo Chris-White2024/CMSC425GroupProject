@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class powerUp : MonoBehaviour
 {
-    public GameObject pickupEffect;
 
     void OnTriggerEnter(Collider other){
         if (other.CompareTag("Player")){
@@ -33,8 +32,6 @@ public class powerUp : MonoBehaviour
         }
         //Spawn a cool effect
         playerMaterials.PushColor(color);
-        GameObject tmp2 = Instantiate(pickupEffect, transform.position, transform.rotation);
-        
         //Remove Object
         GameObject tmp = gameObject;
         //Store transform of object
@@ -42,13 +39,12 @@ public class powerUp : MonoBehaviour
         //Move object far away
         tmp.transform.position = new Vector3(0, -100, 0);
         //Wait 5 seconds
-        StartCoroutine(Respawn(tmp, pos, tmp2));
+        StartCoroutine(Respawn(tmp, pos));
         return;
     }
-    IEnumerator Respawn(GameObject obj, Vector3 pos, GameObject particles){
+    IEnumerator Respawn(GameObject obj, Vector3 pos){
         yield return new WaitForSeconds(5);
         //Move object back to original position
-        Destroy(particles);
         obj.transform.position = pos;     
     }
 

@@ -59,7 +59,6 @@ public class ColorHandler : MonoBehaviour
             case "yellow":
                 SetPlayerColor(Color.yellow);
                 ompoMovement.canWallRun = true;
-                ompoMovement.jumpHeight = 5.0f;
                 break;
         }
 
@@ -69,7 +68,7 @@ public class ColorHandler : MonoBehaviour
     void ResetAbilities()
     {
         ompoMovement.speed = 8f;
-        ompoMovement.jumpHeight = 2f;
+        ompoMovement.jumpHeight = 5f;
         ompoMovement.canWallRun = false;
         ompoMovement.isWallRunning = false;
     }
