@@ -48,9 +48,7 @@ public class floatingShard : MonoBehaviour
             direction = 1 * (1/direction) * .5f;
             lowered = false;
         }
-        if (direction != 0) {
-            print(direction);
-        }
+
         transform.Translate(0f, direction * bobSpeed * Time.deltaTime, 0f);
 
         transform.Rotate(-Vector3.forward * random.Next(1,15) * initialDirection * Time.deltaTime);
