@@ -14,12 +14,15 @@ public class TutorialText : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Use CompareTag for performance
         {
+            //Wait until the text is the empty string
+
             StartCoroutine(setText()); // Correct coroutine call
         }
     }
 
     IEnumerator setText()
     {  
+        yield return new WaitUntil(() => textBox.text == ""); // Wait until the text is the empty string
         textBox.text = tutorialText;
         yield return new WaitForSeconds(waitTime);
         textBox.text = "";

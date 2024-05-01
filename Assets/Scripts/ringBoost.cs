@@ -8,6 +8,8 @@ public class ringBoost : MonoBehaviour
     ThirdPersonMovement ompoMovement;
     public float boostTime = 3f;
     public float boostMultiplier = 2f;
+
+    public bool boostActive = false;
     
     // Start is called before the first frame update
     void Start()
@@ -22,8 +24,11 @@ public class ringBoost : MonoBehaviour
         }
     }
     IEnumerator speedBoost(ThirdPersonMovement ompoMovement, float originalSpeed){
+        yield return new WaitUntil(() => boostActive == false);
+        boostActive = true;
         ompoMovement.speed *= boostMultiplier;
         yield return new WaitForSeconds(boostTime);
+        boostActive = false;
         ompoMovement.speed = originalSpeed;
     }
 }
