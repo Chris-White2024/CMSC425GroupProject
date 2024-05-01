@@ -18,7 +18,6 @@ public class ThirdPersonMovement : MonoBehaviour
     public float jumpHeight = 5.0f;
     public float blinkDistance = 5.0f;
 
-    public bool hasDoubleJump;
     public bool isGrounded;
     public bool isWallRunning;
     public bool canWallRun = false;
@@ -77,12 +76,9 @@ void MovementFromInput()
 
     if (Input.GetButtonDown("Jump"))
     {
-        if (isGrounded || hasDoubleJump || isWallRunning)
+        if (isGrounded || isWallRunning)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
-            if (hasDoubleJump){
-                hasDoubleJump = false;
-            }
         }
     }
 }

@@ -8,7 +8,7 @@ public class PickupItem : MonoBehaviour
     ThirdPersonMovement ompoMovement;
     Vector3 offSet;
     bool hasGlider = false;
-    bool hasBoots = false;
+    public bool hasBoots = false;
     Vector3 originalPosition;
     Quaternion originalRotation;
 
@@ -32,8 +32,7 @@ public class PickupItem : MonoBehaviour
         if (this.name.Contains("Boots"))
         {
             hasBoots = true;
-            ompoMovement.hasDoubleJump = true;
-            offSet = new Vector3(.4f, -1f, .5f);
+            offSet = new Vector3(.4f, -2.55f, .5f);
             transform.localRotation = Quaternion.Euler(0f, 180.0f, 0.0f);
         }
         transform.localPosition = Vector3.zero + offSet;
@@ -41,10 +40,6 @@ public class PickupItem : MonoBehaviour
 
     void Update()
     {
-        if (hasBoots && !(ompoMovement.hasDoubleJump) && ompoMovement.isGrounded)
-        {
-            ompoMovement.hasDoubleJump = true;
-        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             DropItem();
