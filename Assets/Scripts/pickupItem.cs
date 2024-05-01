@@ -26,7 +26,7 @@ public class PickupItem : MonoBehaviour
         if (this.name.Contains("Glider"))
         {
             hasGlider = true;
-            offSet = new Vector3(0f, .35f, 0f);
+            offSet = new Vector3(0f, -1.2f, 0f);
             transform.localRotation = Quaternion.identity;
         }
         if (this.name.Contains("Boots"))

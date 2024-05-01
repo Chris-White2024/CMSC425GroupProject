@@ -19,7 +19,7 @@ public class FanBlow : MonoBehaviour
                 Vector3 fanBlowForce = fanDirection * blowForce;
 
                 // Apply the force to the player's position
-                playerMovement.controller.Move(fanBlowForce * Time.deltaTime);
+                playerMovement.velocity += fanBlowForce * Time.deltaTime;
             }
         }
     }

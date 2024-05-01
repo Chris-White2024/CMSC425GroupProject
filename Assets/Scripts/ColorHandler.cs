@@ -67,8 +67,8 @@ public class ColorHandler : MonoBehaviour
 
     void ResetAbilities()
     {
-        ompoMovement.speed = 6f;
-        ompoMovement.jumpHeight = 5.0f;
+        ompoMovement.speed = 8f;
+        ompoMovement.jumpHeight = 5f;
         ompoMovement.canWallRun = false;
         ompoMovement.isWallRunning = false;
     }

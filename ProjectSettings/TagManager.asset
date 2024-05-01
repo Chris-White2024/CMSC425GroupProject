@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ColorBlock
   - WallRun
+  - Enemy
+  - Hazard
   layers:
   - Default
   - TransparentFX
