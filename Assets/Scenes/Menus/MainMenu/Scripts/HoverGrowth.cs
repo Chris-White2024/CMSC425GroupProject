@@ -38,6 +38,9 @@ public class HoverGrowth : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             if (increasing && !isHovering) {
                 break;
             }
+            if (!increasing && isHovering) {
+                break;
+            }
             // Interpolate the scale towards the target scale
             transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * scaleSpeed);
             yield return null;
