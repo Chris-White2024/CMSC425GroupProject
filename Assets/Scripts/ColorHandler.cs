@@ -65,6 +65,11 @@ public class ColorHandler : MonoBehaviour
         colorOnScreen.UpdateColorBlocks(colorStack);
     }
 
+    public void popAll(){
+        colorStack.Clear();
+        colorOnScreen.UpdateColorBlocks(colorStack);
+    }
+
     void ResetAbilities()
     {
         ompoMovement.speed = 8f;
