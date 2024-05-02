@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/LevelSelect/LevelSelect.unity
     guid: 840cf8083c8424c76bd7ff6aaccd6da6
   - enabled: 1
+    path: Assets/Scenes/Menus/EndLevelMenu/endLevelMenu.unity
+    guid: acb2bc1c75369a544a25a2b1b96af40b
+  - enabled: 1
+    path: Assets/Scenes/Menus/EndLevelMenu/deathScreen.unity
+    guid: 06a5a5b79c702544c9c7637b4efd30bc
+  - enabled: 1
+    path: Assets/Scenes/Menus/Settings/settingsMenu.unity
+    guid: 90084c5e149b64841b913e9c142c0ffb
+  - enabled: 1
     path: Assets/Scenes/Scenes To Delete/Level 1.unity
     guid: 24ce86ac22495234484ace5ea6e930df
   m_configObjects: {}
