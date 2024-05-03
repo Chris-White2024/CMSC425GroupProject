@@ -25,13 +25,18 @@ public class LevelLogic : MonoBehaviour
             image.sprite = unlocked;
 
         } else {
+            //Make the button not look clickable
+            this.GetComponent<Button>().interactable = false;
             image.sprite = locked;
             spinner.rotationSpeed = 0f;
         }
     }
 
     public void playLevel() {
-        SceneManager.LoadScene(level+4);
+        if (currentLevel >= level) {
+            PlayerPrefs.SetInt("Current Level", level);
+            SceneManager.LoadScene(level+4);
+        }
     }
 
 }

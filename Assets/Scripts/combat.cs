@@ -11,13 +11,13 @@ public class combat : MonoBehaviour
 
     public ThirdPersonMovement playerMovement;
     public float pushForce = 5f;
-    public PickupItem ompoItems;
 
     public GameObject ompoMesh;
 
     void Start()
     {
-        playerMovement = this.GetComponent<ThirdPersonMovement>();
+
+        playerMovement = GameObject.Find("Third Person Player 1").GetComponent<ThirdPersonMovement>();
     }
 
     public void TakeDamage(int damage)
@@ -49,7 +49,7 @@ public class combat : MonoBehaviour
             TakeDamage(2);
             StartCoroutine(flashMesh());
         }
-        else if (other.gameObject.tag == "Player" && ompoItems.hasBoots == true)
+        else if (other.gameObject.tag == "Player" && playerMovement.hasBoots == true)
         {
             TakeDamage(1);
             pushUpOmpo(other);

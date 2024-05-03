@@ -5,7 +5,7 @@ using UnityEngine;
 public class ColorHandler : MonoBehaviour
 {
     ColorIndicator colorOnScreen;
-    List<string> colorStack = new List<string>();
+    public List<string> colorStack = new List<string>();
     public GameObject playerColor;
     ThirdPersonMovement ompoMovement;
 
@@ -26,6 +26,7 @@ public class ColorHandler : MonoBehaviour
 
     public void PushColor(string color)
     {
+
         colorStack.Add(color);
         colorOnScreen.UpdateColorBlocks(colorStack);
     }

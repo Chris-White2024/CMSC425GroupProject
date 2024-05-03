@@ -14,9 +14,7 @@ public class TutorialText : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Use CompareTag for performance
         {
-            //Wait until the text is the empty string
-
-            StartCoroutine(setText()); // Correct coroutine call
+            StartCoroutine(setText()); 
         }
     }
 

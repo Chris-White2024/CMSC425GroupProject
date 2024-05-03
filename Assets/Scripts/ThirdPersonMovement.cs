@@ -17,6 +17,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public float groundDistance;
     public float jumpHeight = 5.0f;
     public float blinkDistance = 5.0f;
+    public bool hasBoots = false;
 
     public bool isGrounded;
     public bool isWallRunning;

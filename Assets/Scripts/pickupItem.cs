@@ -8,7 +8,6 @@ public class PickupItem : MonoBehaviour
     ThirdPersonMovement ompoMovement;
     Vector3 offSet;
     bool hasGlider = false;
-    public bool hasBoots = false;
     Vector3 originalPosition;
     Quaternion originalRotation;
 
@@ -31,7 +30,7 @@ public class PickupItem : MonoBehaviour
         }
         if (this.name.Contains("Boots"))
         {
-            hasBoots = true;
+            ompoMovement.hasBoots = true;
             offSet = new Vector3(.4f, -2.55f, .5f);
             transform.localRotation = Quaternion.Euler(0f, 180.0f, 0.0f);
         }
@@ -67,7 +66,7 @@ public class PickupItem : MonoBehaviour
     {
         ompoMovement.gravity = -9.81f;
         hasGlider = false;
-        hasBoots = false;
+        ompoMovement.hasBoots = false;
     }
 
     List<GameObject> GetItemsToRemove()
