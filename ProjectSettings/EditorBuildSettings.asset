@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/Settings/settingsMenu.unity
     guid: 90084c5e149b64841b913e9c142c0ffb
   - enabled: 1
+    path: Assets/Scenes/Menus/EndLevelMenu/endGame.unity
+    guid: 46e9749492fd8a44abf9942fb71a886f
+  - enabled: 1
     path: Assets/Scenes/Levels/Level 1.unity
     guid: 24ce86ac22495234484ace5ea6e930df
   - enabled: 1
@@ -32,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Level 4.unity
     guid: 9fb0544da81384a47b66c29fdc149a7f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 5.unity
+    guid: b407bd1b6cc22ee4c88f0a9fef30edde
   m_configObjects: {}

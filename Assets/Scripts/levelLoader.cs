@@ -13,11 +13,11 @@ public class levelLoader : MonoBehaviour
     }
 
     public void replayLevel(){
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Current Level")+4);
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Current Level")+5);
     }
 
         public void replayLevelFromEndMenu(){
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Current Level")+4);
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Current Level")+5);
     }
 
     public void startMenu(){
@@ -25,7 +25,7 @@ public class levelLoader : MonoBehaviour
     }
 
     void loadLevel(){
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Level")+4); 
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Level")+5); 
         PlayerPrefs.SetInt("Current Level", PlayerPrefs.GetInt("Level"));
     }
     public void resetLevels(){
