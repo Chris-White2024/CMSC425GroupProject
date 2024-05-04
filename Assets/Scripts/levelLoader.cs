@@ -23,6 +23,10 @@ public class levelLoader : MonoBehaviour
     public void startMenu(){
         SceneManager.LoadScene(0); 
     }
+    public void levelSelect(){
+        SceneManager.LoadScene(1); 
+    }
+
 
     void loadLevel(){
         SceneManager.LoadScene(PlayerPrefs.GetInt("Level")+4); 
