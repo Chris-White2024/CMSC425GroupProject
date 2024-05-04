@@ -64,7 +64,6 @@ public class PickupItem : MonoBehaviour
 
     void DropItem()
     {
-        ompoMovement.gravity = -9.81f;
         hasGlider = false;
         ompoMovement.hasBoots = false;
     }
