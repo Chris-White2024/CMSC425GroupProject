@@ -6,9 +6,12 @@ public class vialCollectable : MonoBehaviour
 {
     private string sceneName;
     public bool debugMode = true;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
     void Start(){
         //Get Name of Scene We are in
         sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        audioSource = GetComponent<AudioSource>();
         //Check if we have collected the vial in this scene
         if(PlayerPrefs.GetInt(sceneName + " vial") == 1 && !debugMode){
             Destroy(gameObject);
@@ -17,9 +20,17 @@ public class vialCollectable : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other){
         if(other.gameObject.tag == "Player"){
+            //Play the audio clip
+            audioSource.clip = audioClip;
+            audioSource.Play();
             PlayerPrefs.SetInt(sceneName + " vial", 1);
             //Destroy the vial  
-            Destroy(gameObject);
+            if(audioSource.isPlaying){
+                Destroy(gameObject, audioClip.length);
+            }
+            else{
+                Destroy(gameObject);
+            }
         }
     }
 }
