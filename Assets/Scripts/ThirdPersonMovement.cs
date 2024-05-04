@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,8 +24,13 @@ public class ThirdPersonMovement : MonoBehaviour
     public bool isWallRunning;
     public bool canWallRun = false;
 
+    private AudioSource audioSource;
+    public AudioClip jumpSound;
 
-
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void Update()
     {
         MovementFromInput();
@@ -79,9 +85,12 @@ void MovementFromInput()
     {
         if (isGrounded || isWallRunning)
         {
+            audioSource.clip = jumpSound;
+            audioSource.Play();
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
     }
 }
+
 
 }
