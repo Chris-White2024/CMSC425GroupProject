@@ -761,7 +761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialText: Press Q to Drop Boots!
   waitTime: 5
-  textBox: {fileID: 0}
+  textBox: {fileID: 361627052}
 --- !u!1001 &521515350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1627,7 +1627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialText: Collect Vials To Save Ompo's Friends!
   waitTime: 5
-  textBox: {fileID: 0}
+  textBox: {fileID: 361627052}
 --- !u!1001 &1304128587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2886,11 +2886,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3695981608590250135, guid: 4fd02991027d38a419fa2e812500fdc7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.016115211
+      value: -0.016115148
       objectReference: {fileID: 0}
     - target: {fileID: 3695981608590250135, guid: 4fd02991027d38a419fa2e812500fdc7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.011311203
+      value: 0.011311159
       objectReference: {fileID: 0}
     - target: {fileID: 4879107681080561958, guid: 4fd02991027d38a419fa2e812500fdc7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2954,11 +2954,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5828951912960298987, guid: 4fd02991027d38a419fa2e812500fdc7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.015693843
+      value: -0.015693486
       objectReference: {fileID: 0}
     - target: {fileID: 5828951912960298987, guid: 4fd02991027d38a419fa2e812500fdc7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.011889237
+      value: 0.011888965
       objectReference: {fileID: 0}
     - target: {fileID: 6375722686223917292, guid: 4fd02991027d38a419fa2e812500fdc7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2990,11 +2990,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6437898656674028641, guid: 4fd02991027d38a419fa2e812500fdc7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.015907355
+      value: -0.015907317
       objectReference: {fileID: 0}
     - target: {fileID: 6437898656674028641, guid: 4fd02991027d38a419fa2e812500fdc7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.011601691
+      value: 0.011601666
       objectReference: {fileID: 0}
     - target: {fileID: 6574164141055132628, guid: 4fd02991027d38a419fa2e812500fdc7, type: 3}
       propertyPath: jumpHeight
@@ -3038,11 +3038,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7855991350158078228, guid: 4fd02991027d38a419fa2e812500fdc7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.01569366
+      value: -0.015693659
       objectReference: {fileID: 0}
     - target: {fileID: 7855991350158078228, guid: 4fd02991027d38a419fa2e812500fdc7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.011889091
+      value: 0.01188909
       objectReference: {fileID: 0}
     - target: {fileID: 8048417950507090874, guid: 4fd02991027d38a419fa2e812500fdc7, type: 3}
       propertyPath: m_Name
@@ -3550,7 +3550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialText: Blue Platforms Wash Away Ompo's Abilities
   waitTime: 5
-  textBox: {fileID: 0}
+  textBox: {fileID: 361627052}
 --- !u!1001 &4663423417498010678
 PrefabInstance:
   m_ObjectHideFlags: 0
