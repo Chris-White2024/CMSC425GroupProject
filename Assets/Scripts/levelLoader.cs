@@ -16,7 +16,7 @@ public class levelLoader : MonoBehaviour
         SceneManager.LoadScene(PlayerPrefs.GetInt("Current Level")+5);
     }
 
-        public void replayLevelFromEndMenu(){
+    public void replayLevelFromEndMenu(){
         SceneManager.LoadScene(PlayerPrefs.GetInt("Current Level")+5);
     }
 
@@ -29,6 +29,9 @@ public class levelLoader : MonoBehaviour
 
 
     void loadLevel(){
+        if(PlayerPrefs.GetInt("Level") == 6){
+            SceneManager.LoadScene(5);
+        }
         SceneManager.LoadScene(PlayerPrefs.GetInt("Level")+5); 
         PlayerPrefs.SetInt("Current Level", PlayerPrefs.GetInt("Level"));
     }
@@ -51,6 +54,18 @@ public class levelLoader : MonoBehaviour
         #endif
         //If in build, quit the application
         Application.Quit();
+    }
+
+    void Update(){
+        //If L is pressed set level to 5 and all vial counts to 1
+        if(Input.GetKeyDown(KeyCode.L)){
+            PlayerPrefs.SetInt("Level", 5);
+            PlayerPrefs.SetInt("Level 1 vial", 1);
+            PlayerPrefs.SetInt("Level 2 vial", 1);
+            PlayerPrefs.SetInt("Level 3 vial", 1);
+            PlayerPrefs.SetInt("Level 4 vial", 1);
+            PlayerPrefs.SetInt("Level 5 vial", 1);
+        }
     }
 
 }

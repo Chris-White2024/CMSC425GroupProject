@@ -35,7 +35,7 @@ public class LevelLogic : MonoBehaviour
     public void playLevel() {
         if (currentLevel >= level) {
             PlayerPrefs.SetInt("Current Level", level);
-            SceneManager.LoadScene(level+4);
+            SceneManager.LoadScene(level+5);
         }
     }
 
