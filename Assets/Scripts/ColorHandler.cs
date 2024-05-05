@@ -37,7 +37,8 @@ public class ColorHandler : MonoBehaviour
 
         if (colorStack.Count == 0)
         {
-            SetPlayerColor(Color.white);
+            Color orange = new Color(1.0f, 0.5f, 0.0f);
+            SetPlayerColor(orange);
             return;
         }
 

@@ -73,9 +73,13 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             yield return null;
         }
 
+        if (PlayerPrefs.GetInt("Level") == 6) {
+            SceneManager.LoadScene(5);
+        } else {
+            SceneManager.LoadScene(PlayerPrefs.GetInt("Level") + 5);
+            PlayerPrefs.SetInt("Current Level", PlayerPrefs.GetInt("Level"));
+        }
 
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Level")+4); 
-        PlayerPrefs.SetInt("Current Level", PlayerPrefs.GetInt("Level"));
     }
 
     IEnumerator ScaleOverTime(Vector3 targetScale)

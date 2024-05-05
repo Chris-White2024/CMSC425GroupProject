@@ -32,8 +32,10 @@ public class levelLoader : MonoBehaviour
         if(PlayerPrefs.GetInt("Level") == 6){
             SceneManager.LoadScene(5);
         }
+        else{
         SceneManager.LoadScene(PlayerPrefs.GetInt("Level")+5); 
         PlayerPrefs.SetInt("Current Level", PlayerPrefs.GetInt("Level"));
+        }
     }
     public void resetLevels(){
         PlayerPrefs.SetInt("Level", 1);
