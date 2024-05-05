@@ -30,13 +30,23 @@ public class LevelLogic : MonoBehaviour
             image.sprite = locked;
             spinner.rotationSpeed = 0f;
         }
+
+        if (currentLevel == level) {
+            spinner.rotationSpeed = 0f;
+        }
     }
 
     public void playLevel() {
         if (currentLevel >= level) {
             PlayerPrefs.SetInt("Current Level", level);
-            SceneManager.LoadScene(level+4);
+            SceneManager.LoadScene(level+5);
         }
     }
+    public void temp() {
+        if (currentLevel >= level) {
+            SceneManager.LoadScene(2);
+        }
+    }
+
 
 }

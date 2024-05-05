@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Microsoft.Unity.VisualStudio.Editor;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -10,12 +10,8 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public GameObject shine1;
     public GameObject shine2;
 
-    private Image image1;
-    private Image image2;
+    public float heightincrease;
 
-
-    public Vector3 ompoLow;
-    public Vector3 ompoHigh;
     private Vector3 originalScale;
     public float hoverScaleMultiplier = 1.25f;
     public float scaleSpeed = 10f;
@@ -25,7 +21,6 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public Vector3 target1;
     public Vector3 target2;
-    private Color initialColor;
 
     void Start()
     {
@@ -40,7 +35,7 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         isHoveringEnabled = true;
 
         if (isHovering) {
-            StartCoroutine(ScaleOverTime(originalScale * hoverScaleMultiplier, ompoHigh));
+            StartCoroutine(ScaleOverTime(originalScale * hoverScaleMultiplier));
         }
     }
 
@@ -50,7 +45,7 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         isHovering = true;
         // Start the scaling coroutine
         if (isHoveringEnabled) {
-            StartCoroutine(ScaleOverTime(originalScale * hoverScaleMultiplier, ompoHigh));
+            StartCoroutine(ScaleOverTime(originalScale * hoverScaleMultiplier));
         }
     }
 
@@ -59,7 +54,7 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         // Reset the flag
         isHovering = false;
         // Start the scaling coroutine
-        StartCoroutine(ScaleOverTime(originalScale, ompoLow));
+        StartCoroutine(ScaleOverTime(originalScale));
     }
 
     public void OnPointerClick(PointerEventData eventData) {
@@ -83,9 +78,11 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         PlayerPrefs.SetInt("Current Level", PlayerPrefs.GetInt("Level"));
     }
 
-    IEnumerator ScaleOverTime(Vector3 targetScale, Vector3 ompoHeight)
+    IEnumerator ScaleOverTime(Vector3 targetScale)
     {
         bool increasing = isHovering;
+        int sign = increasing ? 1 : -1;
+        Vector3 newP = new Vector3(ompo.transform.position.x, ompo.transform.position.y + (heightincrease * sign), 0f);
         while (transform.localScale != targetScale)
         {
             if (increasing && !isHovering) {
@@ -94,7 +91,8 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             if (!increasing && isHovering) {
                 break;
             }
-            ompo.transform.position = Vector3.Lerp(ompo.transform.position, ompoHeight, Time.deltaTime * scaleSpeed);
+
+            ompo.transform.position = Vector3.Lerp(ompo.transform.position, newP, Time.deltaTime * scaleSpeed);
             // Interpolate the scale towards the target scale
             transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * scaleSpeed);
             yield return null;

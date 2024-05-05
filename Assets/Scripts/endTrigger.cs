@@ -13,7 +13,7 @@ public class endTrigger : MonoBehaviour
                 SceneManager.LoadScene(5);
             }
             //If level we are on is the highest level we've reached based on the scene name, then increment the level count
-            if(PlayerPrefs.GetInt("Level") == SceneManager.GetActiveScene().buildIndex-5)
+            if(PlayerPrefs.GetInt("Level") >= SceneManager.GetActiveScene().buildIndex - 5)
             {
                 PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level")+1);
             }
