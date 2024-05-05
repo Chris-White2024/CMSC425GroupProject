@@ -69,13 +69,12 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             shine1.transform.Rotate(-Vector3.forward * 250 * Time.deltaTime);
             shine2.transform.Rotate(-Vector3.forward * 250 * Time.deltaTime);
 
-
+            if (shine1.transform.localScale.x >= target1.x - .001) {
+                PlayerPrefs.SetInt("Current Level", PlayerPrefs.GetInt("Current Level") + 1);
+                SceneManager.LoadScene(PlayerPrefs.GetInt("Current Level")+6); 
+            }
             yield return null;
         }
-
-
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Level")+4); 
-        PlayerPrefs.SetInt("Current Level", PlayerPrefs.GetInt("Level"));
     }
 
     IEnumerator ScaleOverTime(Vector3 targetScale)
