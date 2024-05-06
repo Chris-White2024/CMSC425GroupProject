@@ -8,11 +8,11 @@ public class TutorialText : MonoBehaviour
     // Start is called before the first frame update
     public string tutorialText; 
     public int waitTime = 5;
-    public TMP_Text textBox; // Change TMP to TMP_Text
+    public TMP_Text textBox;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Use CompareTag for performance
+        if (other.CompareTag("Player"))
         {
             StartCoroutine(setText()); 
         }

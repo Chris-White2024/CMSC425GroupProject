@@ -18,8 +18,8 @@ public class spinningObjects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Rotates the object around the respective axis
         if (dim == 'z'){
-        //Make rotate in place
         transform.Rotate(0,0, spinSpeed * Time.deltaTime);
         }
         else if (dim == 'y'){
