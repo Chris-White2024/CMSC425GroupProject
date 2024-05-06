@@ -42,12 +42,6 @@ public class LevelLogic : MonoBehaviour
             SceneManager.LoadScene(level+6);
         }
     }
-    public void temp() {
-        if (currentLevel >= level) {
-            SceneManager.LoadScene(3);
-            SceneManager.LoadScene(level+6);
-        }
-    }
 
 
 }
