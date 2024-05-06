@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class levelLoader : MonoBehaviour
 {
+
     public void nextLevel(){
         loadLevel();
     }
@@ -58,6 +59,9 @@ public class levelLoader : MonoBehaviour
     }
 
     void Update(){
+
+            
+        
         //If L is pressed set level to 5 and all vial counts to 1
         if(Input.GetKeyDown(KeyCode.L)){
             PlayerPrefs.SetInt("Level", 5);
