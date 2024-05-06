@@ -18,6 +18,7 @@ public class endTrigger : MonoBehaviour
             {
                 SceneManager.LoadScene(6);
             }
+
             SceneManager.LoadScene(3); 
         }
     }
