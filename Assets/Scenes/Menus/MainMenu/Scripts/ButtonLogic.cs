@@ -11,6 +11,7 @@ public class ButtonLogic : MonoBehaviour
     public int settings;
 
     public void play() {
-        SceneManager.LoadScene(levelSelect);
+        SceneManager.LoadScene(2);
     }
+
 }

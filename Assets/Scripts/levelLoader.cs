@@ -13,27 +13,26 @@ public class levelLoader : MonoBehaviour
     }
 
     public void replayLevel(){
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Current Level")+5);
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Current Level")+6);
     }
 
     public void replayLevelFromEndMenu(){
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Current Level")+5);
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Current Level")+6);
     }
 
     public void startMenu(){
-        SceneManager.LoadScene(0); 
+        SceneManager.LoadScene(1); 
     }
     public void levelSelect(){
-        SceneManager.LoadScene(1); 
+        SceneManager.LoadScene(2); 
     }
 
 
     void loadLevel(){
         if(PlayerPrefs.GetInt("Level") == 6){
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene(6);
         }
-        else{
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Level")+5); 
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Level")+6); 
         PlayerPrefs.SetInt("Current Level", PlayerPrefs.GetInt("Level"));
         }
     }
@@ -46,7 +45,7 @@ public class levelLoader : MonoBehaviour
         PlayerPrefs.SetInt("Level 5 vial", 0);
     }
     public void loadSettings() {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(5);
     }
 
     public void exit(){
