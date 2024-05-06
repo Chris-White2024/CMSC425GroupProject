@@ -34,8 +34,8 @@ public class levelLoader : MonoBehaviour
         }
         SceneManager.LoadScene(PlayerPrefs.GetInt("Level")+6); 
         PlayerPrefs.SetInt("Current Level", PlayerPrefs.GetInt("Level"));
-        }
     }
+    
     public void resetLevels(){
         PlayerPrefs.SetInt("Level", 1);
         PlayerPrefs.SetInt("Level 1 vial", 0);
@@ -68,5 +68,4 @@ public class levelLoader : MonoBehaviour
             PlayerPrefs.SetInt("Level 5 vial", 1);
         }
     }
-
 }
